@@ -1,4 +1,4 @@
-let choiceArray = ["Rock", "Paper", "Scissors"];
+const choiceArray = ["Rock", "Paper", "Scissors"];
 let playerScore = 0;
 let computerScore = 0;
 let roundCount = 1;
@@ -15,18 +15,26 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    playerSelection = choiceArray[0];
-    computerSelection = computerPlay();
-    if (playerSelection === choiceArray[0] && computerSelection === choiceArray[0] || playerSelection === choiceArray[1] && computerSelection === choiceArray[1] || playerSelection === choiceArray[2] && computerSelection === choiceArray[2]) {
+    let player = playerSelection;
+    let computer = computerSelection;
+    if (playerSelection === "Rock" && computerSelection === "Rock" || playerSelection === "Paper" && computerSelection === "Paper" || playerSelection === "Scissors" && computerSelection === "Scissors") {
         return `It's a tie`; }
-        else if (playerSelection === choiceArray[0] && computerSelection === choiceArray[2] || playerSelection === choiceArray[2] && computerSelection === choiceArray[1] || playerSelection === choiceArray[1] && computerSelection === choiceArray[0]) {
-            playerScore ++;
-            return `You win! ${playerSelection} beats ${computerSelection}! `;        
-        } else {
-            computerScore ++;
-            return `You lose! ${computerSelection} beats ${playerSelection}!
-            `;
+        else if (playerSelection === "Rock" && computerSelection === "Scissors" || playerSelection === "Paper" && computerSelection === "Rock" || playerSelection === "Scissors" && computerSelection === "Paper") {
+            return `You win! ${player} beats ${computer}`;
+        }
+        else {
+            return `You lose! ${computer} beats ${player}`;
         }
     }
 
-console.log(playRound());
+function game(playerSelect) {
+    let playerSelection = playerSelect;
+    let computerSelection = computerPlay();
+    let roundResult = playRound(playerSelection, computerSelection);
+    console.log(playRound(playerSelection, computerSelection));
+    if (roundResult.search("You win!")) {
+        playerScore ++;
+    } else if (roundResult.search("You lose!")) {
+        computerScore ++;
+    } 
+}
