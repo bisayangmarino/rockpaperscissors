@@ -39,9 +39,9 @@ function game(playerSelect) {
     let computerSelection = computerPlay();
     playRound(playerSelection, computerSelection);
 
-     if (playerScore > computerScore) {
+     if (playerScore >= 5) {
         return console.log(`Congratulations! You win the game!`);
-    } else if (computerScore > playerScore) {
+    } else if (computerScore >= 5) {
         return console.log(`You lost. Try again next time!`);
     }
 }
