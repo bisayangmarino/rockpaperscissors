@@ -1,7 +1,6 @@
 const choiceArray = ["Rock", "Paper", "Scissors"];
 let playerScore = 0;
 let computerScore = 0;
-let roundCount = 1;
 
 function computerPlay() {
     let random = Math.floor(Math.random()*choiceArray.length);
@@ -18,23 +17,31 @@ function playRound(playerSelection, computerSelection) {
     let player = playerSelection;
     let computer = computerSelection;
     if (playerSelection === "Rock" && computerSelection === "Rock" || playerSelection === "Paper" && computerSelection === "Paper" || playerSelection === "Scissors" && computerSelection === "Scissors") {
-        return `It's a tie`; }
+        return console.log(`It's a tie
+        Your score: ${playerScore}
+        Computer score: ${computerScore}`); }
         else if (playerSelection === "Rock" && computerSelection === "Scissors" || playerSelection === "Paper" && computerSelection === "Rock" || playerSelection === "Scissors" && computerSelection === "Paper") {
-            return `You win! ${player} beats ${computer}`;
+            playerScore ++;
+            return console.log(`You win! ${player} beats ${computer}
+            Your score: ${playerScore}
+        Computer score: ${computerScore}`);
         }
         else {
-            return `You lose! ${computer} beats ${player}`;
+            computerScore ++;
+            return console.log(`You lose! ${computer} beats ${player}
+            Your score: ${playerScore}
+        Computer score: ${computerScore}`);
         }
     }
 
 function game(playerSelect) {
     let playerSelection = playerSelect;
     let computerSelection = computerPlay();
-    let roundResult = playRound(playerSelection, computerSelection);
-    console.log(playRound(playerSelection, computerSelection));
-    if (roundResult.search("You win!")) {
-        playerScore ++;
-    } else if (roundResult.search("You lose!")) {
-        computerScore ++;
-    } 
+    playRound(playerSelection, computerSelection);
+
+     if (playerScore > computerScore) {
+        return console.log(`Congratulations! You win the game!`);
+    } else if (computerScore > playerScore) {
+        return console.log(`You lost. Try again next time!`);
+    }
 }
